@@ -19,4 +19,4 @@ ensuite on utilise la "secure copy protocol" `scp` a partir du raspberry pi pour
 
 il faut d'abord entrer le mot de passe du raspberry pi et ensuite le mot de passe du ev3dev ("maker") pour autoriser le transfert.
 
-finalement, il faut acceder au ev3dev via SSH et transferer le module au bon endroit (on ne peut pas le copier directement dans le dossier systeme avec la commande `scp`) : `mv /home/robot/[module] /usr/local/lib/python3.5/dist-packages/[module]` 
+finalement, il faut acceder au ev3dev via SSH et transferer le module au bon endroit (on ne peut pas le copier directement dans le dossier systeme avec la commande `scp`) : `sudo mv /home/robot/[module] /usr/local/lib/python3.5/dist-packages/[module]` 
