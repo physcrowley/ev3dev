@@ -2,4 +2,4 @@
 
 l'adresse du publicateur reste "localhost"
 
-je n'ai pas reussi a trouver une adresse a fournir au client de l'abonne qui ne donne pas une erreur de connexion refuse ou d'argument invalide.
+je n'ai pas réussi à trouver une adresse à fournir au client de l'abonné qui ne donne pas une erreur de "connexion refusée" ou d'"argument invalide".
