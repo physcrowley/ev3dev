@@ -9,7 +9,7 @@ def on_connect(client, userdata, flags, rc):
   client.subscribe("topic/test")
 
 def on_message(client, userdata, msg):
-  # parce que si c'est du texte, la fonction int() va planter
+  # parce que la fonction int() va planter si c'est du texte
   try : 
     val = int(msg.payload)
     if val > 0 :
