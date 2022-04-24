@@ -25,3 +25,5 @@ while running :
     # sinon, pas de communication juste un message d'erreur
     else :
         print("\tinvalid entry")
+
+print("end")

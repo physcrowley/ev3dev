@@ -17,7 +17,7 @@ def on_message(client, userdata, msg):
     elif val < 0 :
       print("---")
     else :
-      print("x")
+      print("...")
   # et ci ç'a planté, on le traite comme du texte
   except :
     if msg.payload.decode() == "q":
