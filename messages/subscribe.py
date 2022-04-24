@@ -16,14 +16,7 @@ def on_message(client, userdata, msg):
     client.disconnect()
     
 client = mqtt.Client()
-client.connect("localhost",1883,60) 
-  # use "localhost" for testing on same machine as publisher
-  #
-  # attempted and refused connections to the Rasp. Pi publisher:
-  #   "10.42.0.1" # configured gateway is 10.42.0.1/24
-  #   "localhost"
-  #   "raspberrypi" # from the `hostname` command
-  #   "127.0.1.1" # from the `hostname -i` command
+client.connect("ev3crowley",1883,60)
 
 client.on_connect = on_connect
 client.on_message = on_message
