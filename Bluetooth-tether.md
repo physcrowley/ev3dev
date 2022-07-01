@@ -13,7 +13,7 @@ Mais si vous insistez, il faut :
 
 C'est possible d'utiliser la connexion Bluetooth, mais **à chaque connexion avec l'ordinateur l'adresse IP change -> il faut alors changer la configuration de connexion pour l'étape 2 chaque fois aussi**. 
 
->🛑 La connexion Bluetooth (adresse IP variable) n'est pas aussi pratique que l'adresse IP fixe établi pour la connexion avec un fil USB, et ça ne marche pas chaque fois.
+>🛑 La connexion Bluetooth (adresse IP variable) n'est pas aussi pratique que l'adresse IP fixe établie pour la connexion avec un fil USB, et ça ne marche pas chaque fois.
 
 1. Sur la brique, allez dans "Wireless and Networks > Bluetooth".
 1. Activez "Powered", ensuite "Visible", ensuite "Start Scan".
