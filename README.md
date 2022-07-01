@@ -1,5 +1,10 @@
-# EV3DEV Python - communications
+# Gestion de base des briques
 
-Le code fonctionne sur des rapsberry pi (Linux), si le RPi est le "publisher" et le "subscriber", mais ça ne fonctionne pas sur Windows.
+Ce dossier contient des informations pour :
 
-Aussi bien que le code fonctionne sur Raspberry Pi, en date de ce commit, je n'ai pas réussi à configurer la connexion (l'addresse de l'hôte) pour établir la connexion entre la brique EV3 (client) et l'ordinateur (serveur).
+* configurer correctement les briques EV3 (avec l'image ev3dev sur carte SD) pour une connexion à l'ordi avec fil (fiable) ou via Bluetooth (pas fiable)
+* renommer la brique
+* accéder directement au système d'exploitation de la brique (via la ligne de commande)
+* transférer des fichiers (via la ligne de commande)
+
+Il y a aussi un dossier qui contient un projet qui permet la publication et la souscription de messages entre l'ordi et la brique. Par contre, l'expérience révèle que ce n'est pas possible de reproduire ce système entre deux briques EV3 qui se parlent directement.
