@@ -4,7 +4,7 @@ Il faut :
 
 1. **Activer et configurer un tether** qui crée un Personal Access Network où la brique EV3 est l'hôte et l'ordi est le client
 1. **Se brancher avec un fil USB** à l'ordi
-1. Utiliser l'adresse IP fixe du tether - créée par la brique - pour définir la connexion à l'ordi.
+1. **Ouvrir la communication** entre la brique et l'ordi.
 
 
 ## 1 - Créer un réseau par USB Tether
