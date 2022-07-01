@@ -1,68 +1,71 @@
-# Établir un connexion Bluetooth fiable
+# Établir un connexion Bluetooth
 
->Il ne semble pas avoir une connexion Bluetooth fiable avec Windows
+>🛑 Il ne semble pas y avoir de connexion Bluetooth fiable et stable sur Windows
 
-Il faut :
+**La connexion Bluetooth est déconseillée vue son instabilité -> utiliser une connexion par fil USB pour le travail quotidien.**
 
-1. Créer une connexion Bluetooth avec l'ordi
-1. Activer un tether (qui crée un Personal Access Network ou l'EV3 est le routeur et l'ordi est le client)
-1. Utiliser l'IP fixe du tether - créée par la brique -  pour se connecter.
+Mais si vous insistez, il faut :
+
+1. **Créer une connexion Bluetooth** avec l'ordi
+1. **Ouvrir la communication** entre la brique et l'ordi.
 
 ## 1 - Connexion Bluetooth avec l'ordi
 
-1. Sur la brique, aller dans Wireless and Networks > Bluetooth.
-1. Activer Powered, ensuite Visible, ensuite Start Scan
-1. Naviguer dans la liste, choisir votre ordinateur et cliquer sur Pair.
-1. Suivre les étapes de confirmation sur la brique et sur l'ordi.
+C'est possible d'utiliser la connexion Bluetooth, mais **à chaque connexion avec l'ordinateur l'adresse IP change -> il faut alors changer la configuration de connexion pour l'étape 2 chaque fois aussi**. 
 
-La machine Windows devrait reconnaître un nouvel appareil Carte réseau > Remote NDIS Compatible Device (ouvrir le Gestionnaire des périphériques pour vérifier). 
+>🛑 La connexion Bluetooth (adresse IP variable) n'est pas aussi pratique que l'adresse IP fixe établi pour la connexion avec un fil USB, et ça ne marche pas chaque fois.
 
->Si jamais cette connexion ne s'établit pas correctement : sur Windows, aller dans les paramètres Bluetooth et autres périphériques et supprimer l'appareil ev3dev sous Autres appareils. Sur la brique, aller dans Wireless and Networks > Bluetooth, cliquer sur l'ordinateur et choisir Remove. Recommencer à la première étape ci-dessus.
+1. Sur la brique, allez dans "Wireless and Networks > Bluetooth".
+1. Activez "Powered", ensuite "Visible", ensuite "Start Scan".
+1. Naviguez dans la liste, choisir votre ordinateur et cliquer sur "Pair".
+1. Suivre les étapes de confirmation sur la brique et sur l'ordi, notamment en :
+    * confirmant le code de vérification sur chaque appareil et
+    * en acceptant le service AVRCP sur la brique
+1. Sur la brique, sortez du menu Bluetooth et allez dans "Wireless and Networks > All Network Connections".
+1. Cliquez sur la connexion "[nom de l'ordi]" qui apparaît.
+1. Si c'est la première connexion, cliquez sur "Connect". La configuration peut prendre une minute ou deux.
+1. Cochez "Connect automatically" pour éviter à refaire ces étapes lors des prochaines connexions.
 
-## 2 - Activer un tether
+La machine Windows devrait reconnaître un nouvel appareil. Vous pouvez le vérifier :
+* en ouvrant "Paramètres Bluetooth et autres périphériques" sous la liste "Autres appareils" il devrait y avoir un appareil nommé "ev3dev" (ou le nom que vous avez donné à la brique).
 
->C'est cette partie qui n'est pas fiable... et ça rend la connexion difficile.
+## 2 - Établir la communication.
 
-1. Sur la brique, aller dans Wireless and Networks > Tethering.
-1. Cocher Gadget. Redémarrer la brique; c'est nécessaire pour activer le changement.
-1. Revenir dans Wireless and Networks > Tethering. Gagdet devrait toujours être coché.
-1. Cocher Bluetooth.
-1. Cocher Network Info. Après plusieurs secondes vous verrez l'adresse IP static 192.168.0.1. C'est ça qu'on utilise (même si une autre adresse IP apparaît en haut de la brique). Bref, la brique sera toujours identifiable avec les paramètres suivants :
-    * adresse IP (fixe) : 192.168.0.1
-    * nom : robot
-    * mot de passe : maker
-    
-Cette information est utilisé par tous les outils de connexion :
-    * *Ev3dev Device Browser* dans VS Code (multi-langue)
-    * le plugin *thonny-ev3dev* dans Thonny (Python)
-    * *ssh* et *sftp* via la ligne de commande (gestion de la brique et de ses fichiers)
+Il faut que la brique soit déjà connectée avec la configuration de l'étape précédente.
 
-## 3 - Se connecter
+### Via VS Code et l'extension "Ev3dev Device Browser"
 
-Dans tous les cas, il faut que la brique soit déjà connectée avec la configuration des deux étapes précédentes de faites.
+Pour se connecter, dans l'*Explorateur* :
+1. Cliquez sur "Ev3dev Device Browser" et ensuite sur "Click here to connect to a device". 
+1. Cliquez ensuite sur l'option "I don't see my device".
+    > 🛑 Il faut créer un nouvel appareil chaque fois que la brique est reconnecté à l'ordinateur parce que son adresse IP change et c'est cette adresse qui définit l'appareil.
+1. Tapez un nom comme "brique[n]" où `n` est un nouveau nombre comme la date de la connexion.
+1. Tapez l'adresse IP que vous voyez en haut de l'écran de la brique.
+1. Après quelques (dizaines de) secondes, le cercle jaune deviendra vert indiquant une bonne connexion. 
 
-### Via une console Command Prompt, PowerShell ou WSL
+>Si le cercle devient rouge et il y a un message que la tentative de connexion a pris trop de temps ("timed out"), la connexion a échouée.
 
-Pour **lancer une session SSH** (pour lancer des commandes et gérer le système directement sur la brique), taper la commande `ssh robot@192.168.0.1` dans un terminal et entrer le mot de passe "maker". Votre terminal reflète alors le terminal sur la brique.
+Pour **supprimer les vieux appareils** quand la liste devient très longue, suivre les étapes suivantes :
 
-Pour **lancer une session SFTP** (pour transférer et gérer des fichiers entre la brique et l'ordi), taper la commande `sftp robot@192.168.0.1` dans un terminal et entrer le mot de passe "maker". Votre terminal commence maintenant avec l'invite "sftp> ". 
-
-* Pour de l'aide sur les différentes options du programme sftp, lancer la commande `help`.
-* Pour quitter le programme sftp, lancer la commande `exit` ou `quit`.
-
-### Via l'extension "ev3dev device browser" sur VS Code
-
-Pour **vérifier la configuration** de la connexion dans l'extension :
-
-1. Ouvrir Settings avec la combinaison `Ctrl + ,` et taper "ev3".
-1. Sous l'option Ev3dev Browser : Additional Devices, cliquer  "Modifier dans settings.json"
-1. Voir s'il y a une connexion avec la configuration suivante :
+1. Ouvrir Settings avec la combinaison `Ctrl + ,` et taper "ev3dev".
+1. Sous l'option *Ev3dev Browser : Additional Devices*, cliquer "Modifier dans settings.json"
+1. La liste des appareils sera entre les lignes suivantes :
     ```json
-        {
-            "name": "ev3dev (Bluetooth)",
-            "ipAddress": "192.168.0.1"
-        },
+    "ev3devBrowser.additionalDevices": [   
+        // liste des appareils ici
+    ],
     ```
-1. Si non, ajouter cette configuration à la liste et supprimer les autres (sauf "ev3dev (wired)" ou "ev3dev (USB tether)").
+1. Chaque appareil individuel sera entre accolades comme l'exemple ci-dessous :
+    ```json
+    {
+        "name": "brique 2 fevrier",
+        "ipAddress": "169.254.128.182"
+    },
+    ```
+    et l'adresse IP sera différente pour chacun.
+1. Supprimez tous les appareils inutiles en sélectionnant d'accolade ouvrante jusqu'à une accolade fermante avec la virgule: `{ ... },`
+    >**Ne supprimez pas l'appareil "ev3dev (USB tether)" ou "ev3dev (wired)"** qui est configuré pour la connexion via câble USB.
 
-Pour se connecter, dans l'explorateur, cliquer sur Ev3dev Device Browser et ensuite sur "Click here to connect to a device". Cliquer ensuite sur l'appareil "ev3dev (Bluetooth)". La connexion devrait s'établir si la brique est déjà connecté à l'ordi.
+### Via une console (Command Prompt, PowerShell, Terminal, etc.)
+
+Les options de communication plus avancées via la ligne de commande sont déconseillées à travers la connexion Bluetooth. Établir une connexion avec le fil USB pour utiliser les outils SSH ou SFTP.
