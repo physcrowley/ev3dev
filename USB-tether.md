@@ -2,12 +2,12 @@
 
 Il faut :
 
-1. **Activer et configurer un tether** qui crée un Personal Access Network où la brique EV3 est l'hôte et l'ordi est le client
+1. **Activer et configurer un tether** qui crée un Personal Access Network (PAN) où la brique EV3 est l'hôte et l'ordi est le client
 1. **Se brancher avec un fil USB** à l'ordi
 1. **Ouvrir la communication** entre la brique et l'ordi.
 
 
-## 1 - Créer un réseau par USB Tether
+## 1 - Créer un réseau PAN par Tether
 
 1. Sur la brique, allez dans "Wireless and Networks > Tethering".
 1. Cochez "Gadget" et redémarrer la brique. C'est nécessaire pour activer le changement.
@@ -41,7 +41,7 @@ Il faut :
         * Si non, ajouter cette configuration à la liste.
         * Si oui, mais la valeur pour "ipAddress" n'est pas celle-ci, corriger la valeur.
 
-    >La seule autre connexion devrait être "ev3dev (Bluetooth)" et celle-ci devrait avoir la même ipAddress que "ev3dev (USB tether)" / "ev3dev (wired)". *Supprimer les autres configurations*.
+    >*Supprimer les autres configurations*.
 
 ## 2 - Connexion USB avec l'ordi
 
